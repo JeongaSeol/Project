@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='ko'>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}">        <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    </head>
+    <body>
+        <style>
+            .intro_bg{
+                background-image:url('static/image/menu.png');
+                width:100%;
+                height:100px;
+            }
+        </style>
+        <div class = 'wrap'>
+            <div class = "intro_bg">
+                <div class = "header">
+                    <span class = 'intro_text'>
+                        <a href = '{% url "index" %}'>COVID-19</a>
+                    </span>
+                    <ul class="nav">
+                        <li><a href='{% url "coronaWeek" %}'>COVID19</a></li>
+                        <li><a href='{% url "vaccine" %}'>VACCINE</a></li>
+                        <li><a href='{% url "board" %}'>BOARD</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- menu nav끝 -->
+           
+        </div>
+        <div class = 'status_title3'>
+            <div id='title'>게시판</div>
+            <div id='subtitle'>&nbsp;&nbsp;&nbsp; COVID-19/백신에 대한 의견을 자유롭게 공유해보세요</div>
+        </div>
+        <div class = 'board_container'>
+            <div class = 'board_content'>
+                <div class = 'boardMessage'>
+                    <form action='./addBoard/' method='POST'>{% csrf_token %}
+                        <div class="input-group">
+                            <input id="boardContent" name="boardContent" type="text" class="form-control" placeholder="자유롭게 의견을 적어주세요">
+                            <span class="input-group-btn">
+                                <button class="btn1" type="submit">게시</button>
+                            </span>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="board_list">
+                <ul class="board_list2">
+	        {% for board in boards %}
+                    <form action="./deleteBoard/" method="GET">
+                        <div class="input-group2" name='board1'>
+                            <li class="list-group-item">{{ board.content }}</li>
+                            <input type="hidden" id="boardNum" name="boardNum" value="{{ board.id }}"></input>
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn2">delete</button>
+                            </span>
+                        </div>
+                    </form>
+	        {% endfor %}
+                </ul>
+            </div>
+        </div>
+
+
+    </body>
+</html>

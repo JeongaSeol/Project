@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang='ko'>
+    <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="{% static 'css/style.css'%}">
+    </head>
+    <body>
+        <style>
+            .intro_bg{
+                background-image:url('static/image/menu.png');
+                width:100%;
+                height:100px;
+            }
+        </style>
+        <div class ="wrap">
+            <div class = "intro_bg">
+                <div class = "header">
+                    <span class = 'intro_text'>
+                        <a href = '{% url "index" %}'>COVID-19</a>
+                    </span>
+                    <ul class="nav">
+                        <li><a href='{% url "coronaWeek" %}'>COVID19</a></li>
+                        <li><a href='{% url "vaccine" %}'>VACCINE</a></li>
+                        <li><a href='{% url "board" %}'>BOARD</a></li>
+                    </ul>
+                </div>
+            </div>
+            <!-- menu navigator end-->
+            <!-- 행정구별 백신접종현황 title -->
+            <div class = 'status_title'>
+                <div id='title'>서울시 행정구별 백신 접종 현황</div>
+                <div id='subtitle'>(2021.09.04 기준)</div>
+            </div>
+            <!-- 백신접종현황  -->
+            <ul class ='tab_content'>
+                <li id='dateimg'>
+                    <div class='date_img'>
+                        <img src='static/image/vaccinerate.png'>
+                    </div>
+                </li>
+                <li id='datecontent'>
+                    <div>
+                        <div>
+                            <div class='datetitle6'>서울시 평균 백신 접종률</div>
+                            <ul class='date_content4'>
+                                <li>평균 백신접종률 : {{mean}}%</li>
+                            </ul>
+                        </div>
+                        <div class='datetitle6'>백신 접종률 낮은 지역</div>
+                        <div>
+                            <ul class='date_content4'>
+                                <li>1위 {{district1}} : {{rate1}}% </li>
+                                <li>2위 {{district2}} : {{rate2}}% </li>
+                                <li>3위 {{district3}} : {{rate3}}% </li>
+                            </ul>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <!-- 행정구별 백신접종현황 끝 -->
+            <!-- 확진자 대비 백신접종률 제목 -->
+            <div class = 'status_title'>
+                <div id='title'>행정구별 확진자 대비 백신 접종 비율</div>
+                <div id='subtitle'>(2021.09.04 기준)</div>
+            </div>
+            <!-- 확진자 대비 백신접종률 -->
+            <ul class ='tab_content'>
+                <li id='datecontent'>
+                    <div>
+                        <div class='datetitle7'>확진자 대비 평균 백신 접종비율</div>
+                        <ul class='date_content4'>
+                            <li>평균 백신 접종비율 : {{pmean}}</li>
+                        </ul>
+                    </div>
+                    <div class='datetitle7'>백신 접종비율 낮은 지역</div>
+                    <div>
+                        <ul class='date_content4'>
+                            <li>1위 {{pdistrict1}} : {{prate1}} </li>
+                            <li>2위 {{pdistrict2}} : {{prate2}} </li>
+                            <li>3위 {{pdistrict3}} : {{prate3}} </li>
+                        </ul>
+                        <ul class='explain4'>
+                            <li>위 지역들은 다른 지역에 비해 확진자 수가 비교적 많거나<br></li>
+                            <li>백신 접종률이 비교적 낮다는 것을 의미함</li>
+                        </ul>
+                    </div>
+                </li>
+                <li id='dateimg'>
+                    <div class='date_img'>
+                        <img src='static/image/vaccinepercorona.png'>
+                    </div>
+                </li>
+            </ul>
+            <!-- 확진자 대비 백신접종률 끝 -->
+        </div>
+    </body>
+
+</html>
+
+
